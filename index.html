@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argus® by Mincka</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/views.css">
+</head>
+<body>
+
+  <div class="topbar" id="topbar">
+    <div class="topbar-left">
+      <a href="#dashboard" class="topbar-logo" style="text-decoration:none;color:inherit;">Argus<sup>®</sup> <span class="logo-secondary">by Mincka</span></a>
+    </div>
+    <div class="topbar-right">
+      <button type="button" class="topbar-action-btn" id="topbar-create-ticket">
+        <span class="material-icons-outlined">confirmation_number</span>
+        Create a Ticket
+      </button>
+      <div class="topbar-mode-toggle">
+        Light Mode
+        <span class="material-icons-outlined" style="font-size:16px;">expand_more</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar" id="sidebar">
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-bottom">
+      <a href="#settings/notifications" class="sidebar-nav-item" id="sidebar-notifications">
+        <span class="material-icons-outlined">notifications</span>
+        Notifications
+        <span class="sidebar-nav-badge">23</span>
+      </a>
+      <a href="#settings/account" class="sidebar-nav-item" id="sidebar-settings">
+        <span class="material-icons-outlined">settings</span>
+        Settings
+      </a>
+    </div>
+    <div class="sidebar-user" id="sidebar-user">
+      <div class="sidebar-user-avatar" id="sidebar-user-avatar"></div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name" id="sidebar-user-name"></div>
+        <div class="sidebar-user-email" id="sidebar-user-email"></div>
+      </div>
+      <span class="material-icons-outlined expand-icon">expand_more</span>
+    </div>
+  </div>
+
+  <div class="main-content" id="main-content"></div>
+
+  <div class="footer-actions" id="footer-bar" style="display:none;">
+    <button type="button" class="footer-action-btn ghost" id="footer-comments">
+      <span class="material-icons-outlined" style="font-size:18px;">chat_bubble_outline</span>
+      Site Comments
+      <span class="count-badge">23</span>
+    </button>
+    <button type="button" class="footer-action-btn primary" id="footer-ai">
+      <span class="material-icons-outlined" style="font-size:18px;">smart_toy</span>
+      AI Assistance
+    </button>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop" style="display:none;"></div>
+  <div class="modal" id="modal-container" style="display:none;"></div>
+
+  <div id="toast-container" style="position:fixed;top:72px;right:24px;z-index:200;display:flex;flex-direction:column;gap:12px;"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/views-bundle.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

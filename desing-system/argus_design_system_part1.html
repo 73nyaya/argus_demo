@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argus® by Mincka — Design System Part 1: Layouts & Navigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <style>
+        /* ============================================
+           DESIGN SYSTEM: Argus® by Mincka
+           Part 1 of 3 — Layouts & Navigation
+           Validated: February 2026
+           ============================================ */
+        
+        :root {
+            /* Primary — Cyan */
+            --primary-50: #ECFEFF;
+            --primary-100: #CFFAFE;
+            --primary-200: #A5F3FC;
+            --primary-300: #67E8F9;
+            --primary-400: #22D3EE;
+            --primary-500: #06B6D4;
+            --primary-600: #0891B2;
+            --primary-700: #0E7490;
+            --primary-800: #155E75;
+            --primary-900: #164E63;
+            
+            /* Neutrals — Clean greys */
+            --grey-25: #FCFCFD;
+            --grey-50: #F9FAFB;
+            --grey-100: #F3F4F6;
+            --grey-200: #E5E7EB;
+            --grey-300: #D1D5DB;
+            --grey-400: #9CA3AF;
+            --grey-500: #6B7280;
+            --grey-600: #4B5563;
+            --grey-700: #374151;
+            --grey-800: #1F2937;
+            --grey-900: #111827;
+            
+            /* Semantic */
+            --success: #10B981;
+            --success-light: #D1FAE5;
+            --warning: #F59E0B;
+            --warning-light: #FEF3C7;
+            --error: #EF4444;
+            --error-light: #FEE2E2;
+            --info: #3B82F6;
+            --info-light: #DBEAFE;
+            
+            /* Risk Level Colors (validated) */
+            --risk-very-high: #EF4444;
+            --risk-very-high-bg: #FEE2E2;
+            --risk-high: #F97316;
+            --risk-high-bg: #FFF7ED;
+            --risk-medium: #F59E0B;
+            --risk-medium-bg: #FEF3C7;
+            --risk-low: #10B981;
+            --risk-low-bg: #D1FAE5;
+            
+            /* Shadows — Subtle, layered */
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            /* Radius */
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-full: 100px;
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-base: 200ms ease;
+            
+            /* Layout */
+            --sidebar-width: 240px;
+            --topbar-height: 56px;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--grey-50);
+            color: var(--grey-900);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* ============================================
+           DEMO CONTAINER
+           ============================================ */
+        
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        .demo-header { margin-bottom: 48px; }
+        
+        .demo-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--grey-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .demo-header p {
+            font-size: 16px;
+            color: var(--grey-500);
+        }
+        
+        .demo-section { margin-bottom: 64px; }
+        
+        .demo-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--grey-400);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--grey-200);
+        }
+        
+        .demo-row {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        
+        .demo-box {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--grey-200);
+        }
+        
+        .demo-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--grey-500);
+            margin-bottom: 12px;
+        }
+        
+        .demo-note {
+            background: var(--primary-50);
+            border: 1px solid var(--primary-200);
+            border-radius: var(--radius-lg);
+            padding: 16px 20px;
+            margin-bottom: 24px;
+        }
+        
+        .demo-note p {
+            font-size: 14px;
+            color: var(--primary-800);
+            margin: 0;
+        }
+        
+        /* ============================================
+           1. TOP BAR (Validated)
+           ============================================
+           - White background with bottom border
+           - Left: "Argus® by Mincka" logo text
+           - Right: "Create a Ticket" button + "Light Mode" toggle
+           - Height: 56px
+           - Logo: "Argus®" in dark, "by Mincka" in primary-600
+           ============================================ */
+        
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--topbar-height);
+            padding: 0 24px;
+            background: white;
+            border-bottom: 2px solid var(--primary-500);
+        }
+        
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .topbar-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-700);
+            letter-spacing: -0.3px;
+        }
+        
+        .topbar-logo sup {
+            font-size: 9px;
+        }
+        
+        .topbar-logo .logo-secondary {
+            font-weight: 500;
+            color: var(--grey-700);
+        }
+        
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .topbar-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--grey-700);
+            background: white;
+            border: 1px solid var(--grey-300);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .topbar-action-btn:hover {
+            background: var(--grey-50);
+            border-color: var(--grey-400);
+        }
+        
+        .topbar-action-btn .material-icons-outlined {
+            font-size: 18px;
+        }
+        
+        .topbar-mode-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--grey-600);
+            background: white;
+            border: 1px solid var(--grey-300);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+        }
+        
+        /* ============================================
+           2. SIDEBAR NAVIGATION (Validated)
+           ============================================
+           - White background, right border
+           - Width: 240px
+           - Nav items: Dashboard, Sites (expandable), Resources
+           - Bottom section: Notifications (with count badge), Settings
+           - User profile at very bottom with avatar, name, email
+           - Active state: primary-100 bg, primary-700 text
+           - Sites sub-items show when expanded (indented)
+           - Notification badge: primary-600 bg, white text, pill shape
+           ============================================ */
+        
+        .sidebar {
+            width: var(--sidebar-width);
+            background: white;
+            border-right: 1px solid var(--grey-200);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - var(--topbar-height));
+            position: fixed;
+            top: var(--topbar-height);
+            left: 0;
+            padding: 16px 12px;
+        }
+        
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+        
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--grey-600);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+        
+        .sidebar-nav-item:hover {
+            background: var(--grey-100);
+            color: var(--grey-900);
+        }
+        
+        .sidebar-nav-item.active {
+            background: var(--primary-100);
+            color: var(--primary-700);
+        }
+        
+        .sidebar-nav-item .material-icons-outlined {
+            font-size: 20px;
+            color: var(--grey-400);
+        }
+        
+        .sidebar-nav-item.active .material-icons-outlined {
+            color: var(--primary-600);
+        }
+        
+        /* Expandable Sites section */
+        .sidebar-nav-item .expand-icon {
+            margin-left: auto;
+            font-size: 18px;
+            transition: transform var(--transition-fast);
+        }
+        
+        .sidebar-nav-item.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        
+        .sidebar-sub-items {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        
+        .sidebar-sub-item {
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--grey-500);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .sidebar-sub-item:hover {
+            background: var(--grey-100);
+            color: var(--grey-700);
+        }
+        
+        .sidebar-sub-item.active {
+            background: var(--primary-100);
+            color: var(--primary-700);
+            font-weight: 500;
+        }
+        
+        /* Notification badge */
+        .sidebar-nav-badge {
+            margin-left: auto;
+            background: var(--primary-600);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            min-width: 24px;
+            text-align: center;
+        }
+        
+        /* Sidebar spacer pushes bottom items down */
+        .sidebar-spacer {
+            flex: 1;
+        }
+        
+        /* Sidebar bottom section */
+        .sidebar-bottom {
+            border-top: 1px solid var(--grey-200);
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+        
+        /* User profile in sidebar */
+        .sidebar-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-top: 1px solid var(--grey-200);
+            margin-top: 8px;
+            cursor: pointer;
+        }
+        
+        .sidebar-user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--grey-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .sidebar-user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sidebar-user-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .sidebar-user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--grey-900);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .sidebar-user-email {
+            font-size: 12px;
+            color: var(--grey-500);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .sidebar-user .expand-icon {
+            font-size: 18px;
+            color: var(--grey-400);
+        }
+        
+        /* ============================================
+           3. SITE-LEVEL TAB NAVIGATION (Validated)
+           ============================================
+           - Horizontal tabs below page title
+           - Items: Home, Assets, Defects, Tasks, Schedule, Documents
+           - Active tab: primary-600 text with bottom underline
+           - Inactive: grey-500 text
+           - Underline style (not pill/chip)
+           ============================================ */
+        
+        .site-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--grey-200);
+            margin-bottom: 24px;
+        }
+        
+        .site-tab {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--grey-500);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+        }
+        
+        .site-tab:hover {
+            color: var(--grey-700);
+        }
+        
+        .site-tab.active {
+            color: var(--primary-600);
+            border-bottom-color: var(--primary-600);
+        }
+        
+        /* ============================================
+           4. DASHBOARD PAGE LAYOUT (Validated)
+           ============================================
+           - Page title "Dashboard" at top
+           - Site summary cards in a row (2+ cards)
+           - Each card: site name, year dropdown, arrow link
+           - KPIs: Remediation Rate (colored), Assets count, Total Defects
+           - Defects Status: progress bar with Closed/Open legend
+           - Mini table: top defects by risk
+           - Below cards: Tasks section with mine tabs
+           ============================================ */
+        
+        .page-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--grey-900);
+            margin-bottom: 24px;
+        }
+        
+        .site-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .site-summary-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--grey-200);
+            padding: 24px;
+            transition: box-shadow var(--transition-base);
+        }
+        
+        .site-summary-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        .site-summary-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .site-summary-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--grey-900);
+        }
+        
+        .site-summary-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Year dropdown (compact) */
+        .year-dropdown {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--grey-700);
+            background: var(--grey-50);
+            border: 1px solid var(--grey-200);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+        }
+        
+        .year-dropdown .material-icons-outlined {
+            font-size: 16px;
+            color: var(--grey-400);
+        }
+        
+        /* Arrow link button */
+        .arrow-link {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--grey-400);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .arrow-link:hover {
+            background: var(--grey-100);
+            color: var(--grey-700);
+        }
+        
+        .arrow-link .material-icons-outlined {
+            font-size: 20px;
+        }
+        
+        /* KPI Row in site card */
+        .kpi-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .kpi-item {
+            flex: 1;
+        }
+        
+        .kpi-label {
+            font-size: 12px;
+            color: var(--grey-500);
+            margin-bottom: 4px;
+        }
+        
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--grey-900);
+            letter-spacing: -0.5px;
+        }
+        
+        .kpi-value.rate-low {
+            color: var(--error);
+        }
+        
+        .kpi-value.rate-medium {
+            color: var(--warning);
+        }
+        
+        .kpi-value.rate-high {
+            color: var(--success);
+        }
+        
+        /* Defects Status bar */
+        .defects-status {
+            margin-bottom: 20px;
+        }
+        
+        .defects-status-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .defects-status-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--grey-700);
+        }
+        
+        .defects-status-legend {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--grey-500);
+        }
+        
+        .legend-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+        
+        .legend-dot.closed { background: var(--success); }
+        .legend-dot.open { background: var(--grey-400); }
+        
+        .status-progress-bar {
+            height: 28px;
+            background: var(--grey-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .status-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success) 0%, #34D399 100%);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            transition: width 0.5s ease;
+        }
+        
+        /* Mini defect table inside site card */
+        .mini-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .mini-table th {
+            text-align: left;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--grey-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--grey-200);
+        }
+        
+        .mini-table th .material-icons-outlined {
+            font-size: 14px;
+            vertical-align: middle;
+            margin-left: 2px;
+            color: var(--grey-300);
+        }
+        
+        .mini-table td {
+            padding: 10px 12px;
+            font-size: 13px;
+            color: var(--grey-700);
+            border-bottom: 1px solid var(--grey-100);
+        }
+        
+        .mini-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .mini-table .defect-link {
+            color: var(--primary-600);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .mini-table .defect-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Risk Level Badges (Validated) */
+        .risk-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+        }
+        
+        .risk-badge.very-high {
+            background: var(--risk-very-high-bg);
+            color: var(--risk-very-high);
+        }
+        
+        .risk-badge.high {
+            background: var(--risk-high-bg);
+            color: var(--risk-high);
+        }
+        
+        .risk-badge.medium {
+            background: var(--risk-medium-bg);
+            color: var(--risk-medium);
+        }
+        
+        .risk-badge.low {
+            background: var(--risk-low-bg);
+            color: var(--risk-low);
+        }
+        
+        /* ============================================
+           5. SITE HOME PAGE (Validated)
+           ============================================
+           - Hero banner: full-width image with overlay
+           - Customer logo + site name overlay on banner
+           - KPI stat cards row below banner
+           - Defect summary card + Task summary card side by side
+           - Task summary has multi-segment progress bar
+           ============================================ */
+        
+        .site-hero {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 24px;
+        }
+        
+        .site-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px 32px;
+        }
+        
+        .site-hero-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+        
+        .site-hero-logo img {
+            height: 28px;
+        }
+        
+        .site-hero-logo span {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .site-hero-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+        
+        /* KPI Stat Cards Row */
+        .kpi-cards-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .kpi-stat-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--grey-200);
+            padding: 20px 24px;
+        }
+        
+        .kpi-stat-card .kpi-label {
+            font-size: 13px;
+            color: var(--grey-500);
+            margin-bottom: 6px;
+        }
+        
+        .kpi-stat-card .kpi-value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        /* Summary panels row */
+        .summary-panels {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .summary-panel {
+            background: white;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--grey-200);
+            padding: 24px;
+        }
+        
+        .summary-panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--grey-900);
+            margin-bottom: 20px;
+        }
+        
+        .summary-panel-title strong {
+            font-weight: 700;
+        }
+        
+        .summary-stats-row {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .summary-stat {
+            text-align: center;
+        }
+        
+        .summary-stat-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 4px;
+            vertical-align: middle;
+        }
+        
+        .summary-stat-label {
+            font-size: 12px;
+            color: var(--grey-500);
+        }
+        
+        .summary-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--grey-900);
+        }
+        
+        /* Multi-segment progress bar (for Tasks) */
+        .multi-progress-bar {
+            height: 24px;
+            display: flex;
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            background: var(--grey-200);
+        }
+        
+        .multi-progress-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            transition: width 0.5s ease;
+        }
+        
+        .multi-progress-segment.not-started {
+            background: var(--grey-400);
+        }
+        
+        .multi-progress-segment.in-progress {
+            background: var(--warning);
+        }
+        
+        .multi-progress-segment.completed {
+            background: var(--success);
+        }
+        
+        /* ============================================
+           6. ONBOARDING / AUTH PAGE (Validated)
+           ============================================
+           - Split layout: left form, right testimonial
+           - Left: password setup form, CTA button
+           - Right: mining site photo with dark overlay
+           - Quote + Fidel Gonzalez avatar/name
+           - Carousel dots at bottom right
+           - Footer: copyright left, Terms of Service right
+           ============================================ */
+        
+        .auth-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - var(--topbar-height) - 60px);
+            background: var(--grey-50);
+        }
+        
+        .auth-form-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+        }
+        
+        .auth-form {
+            width: 100%;
+            max-width: 380px;
+        }
+        
+        .auth-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--grey-900);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        
+        .auth-subtitle {
+            font-size: 14px;
+            color: var(--grey-500);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .auth-testimonial-side {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            margin: 24px;
+        }
+        
+        .auth-testimonial-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .auth-testimonial-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+        }
+        
+        .auth-tagline {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+        
+        .auth-quote-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .auth-quote-author img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .auth-quote-author-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .auth-quote-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            font-style: italic;
+        }
+        
+        .auth-carousel-dots {
+            display: flex;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        
+        .auth-carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .auth-carousel-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: var(--radius-full);
+        }
+        
+        /* Auth footer */
+        .auth-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            font-size: 13px;
+            color: var(--grey-500);
+            border-top: 1px solid var(--grey-200);
+        }
+        
+        .auth-footer a {
+            color: var(--grey-600);
+            text-decoration: none;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* ============================================
+           7. SETTINGS PAGE (Validated)
+           ============================================
+           - Settings tabs: My Account, Notifications, User Management, Billing
+           - My Account: Profile section, Account Security, Access Support, Notification Preferences
+           - Floating label input style (validated from screenshots)
+           - Toggle switches for security/notification options
+           - "Save Changes" button bottom-right
+           ============================================ */
+        
+        .settings-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--grey-200);
+            margin-bottom: 32px;
+        }
+        
+        .settings-tab {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--grey-500);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+        }
+        
+        .settings-tab:hover {
+            color: var(--grey-700);
+        }
+        
+        .settings-tab.active {
+            color: var(--primary-600);
+            border-bottom-color: var(--primary-600);
+        }
+        
+        .settings-section {
+            margin-bottom: 32px;
+        }
+        
+        .settings-section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .settings-section-header .material-icons-outlined {
+            font-size: 20px;
+            color: var(--grey-500);
+        }
+        
+        .settings-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--grey-900);
+        }
+        
+        .settings-divider {
+            height: 1px;
+            background: var(--grey-200);
+            margin: 32px 0;
+        }
+        
+        /* Profile image upload area */
+        .profile-image-upload {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .profile-avatar-large {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--grey-200);
+            overflow: hidden;
+        }
+        
+        .profile-avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-image-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .profile-image-hint {
+            font-size: 12px;
+            color: var(--grey-500);
+            margin-top: 4px;
+        }
+        
+        /* Floating label input (validated from screenshots) */
+        .floating-input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .floating-input {
+            width: 100%;
+            padding: 16px 14px 8px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--grey-900);
+            background: white;
+            border: 1px solid var(--grey-300);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+            outline: none;
+        }
+        
+        .floating-input:focus {
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px var(--primary-100);
+        }
+        
+        .floating-label {
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary-600);
+            background: white;
+            padding: 0 4px;
+        }
+        
+        /* Settings row with label and action */
+        .settings-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--grey-100);
+        }
+        
+        .settings-row:last-child {
+            border-bottom: none;
+        }
+        
+        .settings-row-content {
+            flex: 1;
+        }
+        
+        .settings-row-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--grey-900);
+        }
+        
+        .settings-row-description {
+            font-size: 13px;
+            color: var(--grey-500);
+            margin-top: 2px;
+        }
+        
+        .settings-row-action {
+            margin-left: 16px;
+        }
+        
+        .settings-row-action a {
+            font-size: 13px;
+            color: var(--primary-600);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .settings-row-action a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Toggle / Switch (validated) */
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--grey-300);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+        
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .toggle.active {
+            background: var(--primary-600);
+        }
+        
+        .toggle.active::after {
+            left: 22px;
+        }
+        
+        /* Save Changes sticky button */
+        .settings-save-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 16px 0;
+            margin-top: 24px;
+        }
+        
+        /* ============================================
+           8. FOOTER ACTIONS BAR (Validated)
+           ============================================
+           - Fixed bottom bar with Site Comments + AI Assistance
+           - Site Comments: ghost style with count badge
+           - AI Assistance: primary filled button
+           ============================================ */
+        
+        .footer-actions {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: var(--sidebar-width);
+            height: 52px;
+            background: white;
+            border-top: 1px solid var(--grey-200);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 24px;
+            gap: 12px;
+            z-index: 50;
+        }
+        
+        .footer-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: none;
+        }
+        
+        .footer-action-btn.ghost {
+            background: transparent;
+            color: var(--grey-600);
+        }
+        
+        .footer-action-btn.ghost:hover {
+            background: var(--grey-100);
+        }
+        
+        .footer-action-btn.primary {
+            background: var(--primary-600);
+            color: white;
+        }
+        
+        .footer-action-btn.primary:hover {
+            background: var(--primary-700);
+        }
+        
+        .footer-action-btn .count-badge {
+            background: var(--grey-200);
+            color: var(--grey-600);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: var(--radius-full);
+        }
+        
+        /* ============================================
+           BUTTONS (Carried Forward)
+           ============================================ */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            outline: none;
+        }
+        
+        .btn:focus-visible {
+            box-shadow: 0 0 0 3px var(--primary-200);
+        }
+        
+        .btn-primary {
+            background: var(--primary-600);
+            color: white;
+        }
+        
+        .btn-primary:hover { background: var(--primary-700); }
+        .btn-primary:active { background: var(--primary-800); }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--grey-700);
+            border: 1px solid var(--grey-300);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--grey-50);
+            border-color: var(--grey-400);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary-600);
+        }
+        
+        .btn-ghost:hover { background: var(--primary-50); }
+        
+        .btn-danger {
+            background: var(--error);
+            color: white;
+        }
+        
+        .btn-danger:hover { background: #DC2626; }
+        
+        .btn-sm { padding: 6px 12px; font-size: 13px; }
+        .btn-lg { padding: 14px 28px; font-size: 16px; }
+        .btn-full { width: 100%; }
+        
+        .btn-icon { padding: 10px; }
+        .btn-icon.btn-sm { padding: 6px; }
+        
+        /* Small change button (for profile image) */
+        .btn-change-image {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: white;
+            background: var(--primary-600);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+        }
+        
+        .btn-remove-image {
+            font-size: 13px;
+            color: var(--grey-500);
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        /* ============================================
+           INPUTS (Carried Forward + Floating Label)
+           ============================================ */
+        
+        .input-group { margin-bottom: 20px; }
+        
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--grey-700);
+            margin-bottom: 6px;
+        }
+        
+        .input {
+            width: 100%;
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--grey-900);
+            background: white;
+            border: 1px solid var(--grey-300);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+            outline: none;
+        }
+        
+        .input::placeholder { color: var(--grey-400); }
+        .input:hover { border-color: var(--grey-400); }
+        
+        .input:focus {
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px var(--primary-100);
+        }
+        
+        .input-error { border-color: var(--error); }
+        .input-error:focus { box-shadow: 0 0 0 3px var(--error-light); }
+        
+        .input-hint { font-size: 13px; color: var(--grey-500); margin-top: 6px; }
+        .input-error-text { font-size: 13px; color: var(--error); margin-top: 6px; }
+        
+        /* Form grid (2 columns) */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        
+        <!-- HEADER -->
+        <div class="demo-header">
+            <h1>Argus<sup style="font-size: 18px;">®</sup> by Mincka</h1>
+            <p>Design System — Part 1 of 3: Layouts & Navigation</p>
+        </div>
+        
+        <!-- VALIDATION NOTICE -->
+        <div class="demo-note">
+            <p><strong>✓ Validated February 2026</strong> — All components in this document have been validated by a UI expert and graphic designer. This is the authoritative reference for implementation.</p>
+        </div>
+        
+        <!-- ============================================
+             TOP BAR
+             ============================================ -->
+        <div class="demo-section">
+            <div class="demo-section-title">1. Top Navigation Bar</div>
+            <div class="demo-note">
+                <p>White background with cyan bottom accent border. Logo "Argus®" in primary-700, "by Mincka" in grey-700. Right side: "Create a Ticket" outlined button + "Light Mode" toggle. Height: 56px.</p>
+            </div>
+            <div class="topbar" style="border-radius: var(--radius-lg);">
+                <div class="topbar-left">
+                    <div class="topbar-logo">Argus<sup>®</sup> <span class="logo-secondary">by Mincka</span></div>
+                </div>
+                <div class="topbar-right">
+                    <button class="topbar-action-btn">
+                        <span class="material-icons-outlined">confirmation_number</span>
+                        Create a Ticket
+                    </button>
+                    <div class="topbar-mode-toggle">
+                        Light Mode
+                        <span class="material-icons-outlined" style="font-size: 16px;">expand_more</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================
+             SIDEBAR
+             ============================================ -->
+        <div class="demo-section">
+            <div class="demo-section-title">2. Sidebar Navigation</div>
+            <div class="demo-note">
+                <p>240px wide, white background. Top items: Dashboard, Sites (expandable with sub-sites), Resources. Bottom: Notifications (with count badge in primary-600), Settings. Very bottom: user profile with avatar, name, email, and dropdown arrow. Active items use primary-100 bg + primary-700 text.</p>
+            </div>
+            <div style="display: inline-block; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--grey-200);">
+                <div style="width: 240px; background: white; padding: 16px 12px; display: flex; flex-direction: column; height: 480px;">
+                    <nav class="sidebar-nav">
+                        <a class="sidebar-nav-item active">
+                            <span class="material-icons-outlined">dashboard</span>
+                            Dashboard
+                        </a>
+                        <a class="sidebar-nav-item expanded">
+                            <span class="material-icons-outlined">location_on</span>
+                            Sites
+                            <span class="material-icons-outlined expand-icon">expand_more</span>
+                        </a>
+                        <div class="sidebar-sub-items">
+                            <div class="sidebar-sub-item active">Nativapps Mega Mine</div>
+                            <div class="sidebar-sub-item">Mincka Ultra Mine</div>
+                        </div>
+                        <a class="sidebar-nav-item">
+                            <span class="material-icons-outlined">folder_open</span>
+                            Resources
+                        </a>
+                    </nav>
+                    <div class="sidebar-spacer"></div>
+                    <div class="sidebar-bottom">
+                        <a class="sidebar-nav-item">
+                            <span class="material-icons-outlined">notifications</span>
+                            Notifications
+                            <span class="sidebar-nav-badge">23</span>
+                        </a>
+                        <a class="sidebar-nav-item">
+                            <span class="material-icons-outlined">settings</span>
+                            Settings
+                        </a>
+                    </div>
+                    <div class="sidebar-user">
+                        <div class="sidebar-user-avatar">
+                            <div style="width: 100%; height: 100%; background: var(--primary-100); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: var(--primary-700);">NY</div>
+                        </div>
+                        <div class="sidebar-user-info">
+                            <div class="sidebar-user-name">Nicolas Yaya</div>
+                            <div class="sidebar-user-email">nicolasy@mincka.co...</div>
+                        </div>
+                        <span class="material-icons-outlined expand-icon" style="font-size: 18px; color: var(--grey-400);">expand_more</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================
+             SITE TABS
+             ============================================ -->
+        <div class="demo-section">
+            <div class="demo-section-title">3. Site-Level Tab Navigation</div>
+            <div class="demo-note">
+                <p>Horizontal underline tabs for site sub-pages. Items: Home, Assets, Defects, Tasks, Schedule, Documents. Active: primary-600 text + underline. Placed below the site name heading.</p>
+            </div>
+            <div class="demo-box" style="padding-bottom: 0;">
+                <div style="font-size: 18px; font-weight: 600; color: var(--grey-900); margin-bottom: 16px;">Nativapps Site</div>
+                <div class="site-tabs" style="margin-bottom: 0;">
+                    <a class="site-tab active">Home</a>
+                    <a class="site-tab">Assets</a>
+                    <a class="site-tab">Defects</a>
+                    <a class="site-tab">Tasks</a>
+                    <a class="site-tab">Schedule</a>
+                    <a class="site-tab">Documents</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================
+             DASHBOARD
+             ============================================ -->
+        <div class="demo-section">
+            <div class="demo-section-title">4. Dashboard — Site Summary Cards</div>
+            <div class="demo-note">
+                <p>Each card shows: site name + year dropdown + arrow. KPIs: Remediation Rate (color-coded: red &lt;30%, amber 30-70%, green &gt;70%), Assets, Total Defects. Defects Status progress bar (green fill). Mini table with top defects by risk level.</p>
+            </div>
+            <div class="site-summary-grid">
+                <!-- Card 1 -->
+                <div class="site-summary-card">
+                    <div class="site-summary-header">
+                        <div class="site-summary-name">Nativapps Mega Mine</div>
+                        <div class="site-summary-actions">
+                            <div class="year-dropdown">2026 <span class="material-icons-outlined">expand_more</span></div>
+                            <div class="arrow-link"><span class="material-icons-outlined">arrow_forward</span></div>
+                        </div>
+                    </div>
+                    <div class="kpi-row">
+                        <div class="kpi-item">
+                            <div class="kpi-label">Remediation Rate</div>
+                            <div class="kpi-value rate-low">22%</div>
+                        </div>
+                        <div class="kpi-item">
+                            <div class="kpi-label">Assets</div>
+                            <div class="kpi-value">70</div>
+                        </div>
+                        <div class="kpi-item">
+                            <div class="kpi-label">Total Defects</div>
+                            <div class="kpi-value">256</div>
+                        </div>
+                    </div>
+                    <div class="defects-status">
+                        <div class="defects-status-header">
+                            <div class="defects-status-title">Defects Status</div>
+                            <div class="defects-status-legend">
+                                <span><span class="legend-dot closed"></span> Closed: 56</span>
+                                <span><span class="legend-dot open"></span> Open: 200</span>
+                            </div>
+                        </div>
+                        <div class="status-progress-bar">
+                            <div class="status-progress-fill" style="width: 22%;">22%</div>
+                        </div>
+                    </div>
+                    <table class="mini-table">
+                        <thead>
+                            <tr>
+                                <th>Defect ID <span class="material-icons-outlined">swap_vert</span></th>
+                                <th>Type <span class="material-icons-outlined">swap_vert</span></th>
+                                <th>Asset <span class="material-icons-outlined">swap_vert</span></th>
+                                <th>Risk <span class="material-icons-outlined">swap_vert</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#" class="defect-link">MM01.01</a></td>
+                                <td>Steel Corrosion</td>
+                                <td>13M Reclaim T...</td>
+                                <td><span class="risk-badge very-high">Very High 24</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="defect-link">MM01.02</a></td>
+                                <td>Concrete Crac...</td>
+                                <td>13M Reclaim T...</td>
+                                <td><span class="risk-badge very-high">Very High 23</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="defect-link">MM01.03</a></td>
+                                <td>Concrete Spall...</td>
+                                <td>13M Reclaim T...</td>
+                                <td><span class="risk-badge very-high">Very High 23</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="site-summary-card">
+                    <div class="site-summary-header">
+                        <div class="site-summary-name">Mincka Ultra Mine</div>
+                        <div class="site-summary-actions">
+                            <div class="year-dropdown">2026 <span class="material-icons-outlined">expand_more</span></div>
+                            <div class="arrow-link"><span class="material-icons-outlined">arrow_forward</span></div>
+                        </div>
+                    </div>
+                    <div class="kpi-row">
+                        <div class="kpi-item">
+                            <div class="kpi-label">Remediation Rate</div>
+                            <div class="kpi-value rate-high">81%</div>
+                        </div>
+                        <div class="kpi-item">
+                            <div class="kpi-label">Assets</div>
+                            <div class="kpi-value">50</div>
+                        </div>
+                        <div class="kpi-item">
+                            <div class="kpi-label">Total Defects</div>
+                            <div class="kpi-value">534</div>
+                        </div>
+                    </div>
+                    <div class="defects-status">
+                        <div class="defects-status-header">
+                            <div class="defects-status-title">Defects Status</div>
+                            <div class="defects-status-legend">
+                                <span><span class="legend-dot closed"></span> Closed: 434</span>
+                                <span><span class="legend-dot open"></span> Open: 100</span>
+                            </div>
+                        </div>
+                        <div class="status-progress-bar">
+                            <div class="status-progress-fill" style="width: 81%;">81%</div>
+                        </div>
+                    </div>
+                    <table class="mini-table">
+                        <thead>
+                            <tr>
+                                <th>Defect ID <span class="material-icons-outlined">swap_vert</span></th>
+                                <th>Type <span class="material-icons-outlined">swap_vert</span></th>
+                                <th>Asset <span class="material-icons-outlined">swap_vert</span></th>
+                                <th>Risk <span class="material-icons-outlined">swap_vert</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#" class="defect-link">UM04.01</a></td>
+                                <td>Steel Corrosion</td>
+                                <td>Conveyor 718M</td>
+                                <td><span class="risk-badge very-high">Very High 22</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="defect-link">UM05.10</a></td>
+                                <td>Concrete Crac...</td>
+                                <td>Rejects Bin</td>
+                                <td><span class="risk-badge very-high">Very High 21</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="defect-link">UM06.05</a></td>
+                                <td>Concrete Spall...</td>
+                                <td>CHPP - Centri...</td>
+                                <td><span class="risk-badge high">High 16</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================
+             SITE HOME
+             ============================================ -->
+        <div class="demo-section">
+            <div class="demo-section-title">5. Site Home — Hero + KPIs + Summary Panels</div>
+            <div class="demo-note">
+                <p>Hero banner with mining site photo, dark gradient overlay, customer logo + site name. Three KPI cards below. Two summary panels: Total Defects (Closed/Open with single progress bar) and Total Tasks (Not Started/In Progress/Completed with multi-segment bar).</p>
+            </div>
+            
+            <!-- Hero Banner -->
+            <div class="site-hero" style="background: linear-gradient(135deg, var(--grey-700) 0%, var(--grey-900) 100%);">
+                <div class="site-hero-overlay">
+                    <div class="site-hero-logo">
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--primary-700);">N</div>
+                        <span>NativApps®</span>
+                    </div>
+                    <div class="site-hero-title">Nativapps Mega Mine</div>
+                </div>
+            </div>
+            
+            <!-- KPI Cards -->
+            <div class="kpi-cards-row">
+                <div class="kpi-stat-card">
+                    <div class="kpi-label">Assets</div>
+                    <div class="kpi-value">70</div>
+                </div>
+                <div class="kpi-stat-card">
+                    <div class="kpi-label">Total Defects</div>
+                    <div class="kpi-value">256</div>
+                </div>
+                <div class="kpi-stat-card">
+                    <div class="kpi-label">Remediation Rate</div>
+                    <div class="kpi-value rate-low">22%</div>
+                </div>
+            </div>
+            
+            <!-- Summary Panels -->
+            <div class="summary-panels">
+                <div class="summary-panel">
+                    <div class="summary-panel-title"><strong>256</strong> Total Defects</div>
+                    <div class="summary-stats-row">
+                        <div class="summary-stat">
+                            <div class="summary-stat-label"><span class="summary-stat-dot" style="background: var(--success);"></span> Closed</div>
+                            <div class="summary-stat-value">56</div>
+                        </div>
+                        <div class="summary-stat">
+                            <div class="summary-stat-label"><span class="summary-stat-dot" style="background: var(--grey-400);"></span> Open</div>
+                            <div class="summary-stat-value">200</div>
+                        </div>
+                    </div>
+                    <div class="status-progress-bar">
+                        <div class="status-progress-fill" style="width: 22%;">22%</div>
+                    </div>
+                </div>
+                <div class="summary-panel">
+                    <div class="summary-panel-title"><strong>56</strong> Total Tasks</div>
+                    <div class="summary-stats-row">
+                        <div class="summary-stat">
+                            <div class="summary-stat-label"><span class="summary-stat-dot" style="background: var(--grey-400);"></span> Not Started</div>
+                            <div class="summary-stat-value">250</div>
+                        </div>
+                        <div class="summary-stat">
+                            <div class="summary-stat-label"><span class="summary-stat-dot" style="background: var(--warning);"></span> In Progress</div>
+                            <div class="summary-stat-value">56</div>
+                        </div>
+                        <div class="summary-stat">
+                            <div class="summary-stat-label"><span class="summary-stat-dot" style="background: var(--success);"></span> Completed/Closed</div>
+                            <div class="summary-stat-value">56</div>
+                        </div>
+                    </div>
+                    <div class="multi-progress-bar">
+                        <div class="multi-progress-segment not-started" style="width: 25%;">25%</div>
+                        <div class="multi-progress-segment in-progress" style="width: 25%;">25%</div>
+                        <div class="multi-progress-segment completed" style="width: 50%;">50%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================
+             ONBOARDING / AUTH
+             ============================================ -->
+        <div class="demo-section">
+            <div class="demo-section-title">6. Onboarding / Authentication Page</div>
+            <div class="demo-note">
+                <p>Split layout: left side = form (welcome title, subtitle, floating-label inputs, full-width CTA). Right side = rounded mining photo with dark overlay, tagline, testimonial quote with author avatar/name, carousel dots. Footer: copyright left, "Terms of Service" link right.</p>
+            </div>
+            <div style="border: 1px solid var(--grey-200); border-radius: var(--radius-lg); overflow: hidden;">
+                <!-- Top bar mini -->
+                <div class="topbar">
+                    <div class="topbar-left">
+                        <div class="topbar-logo">Argus<sup>®</sup> <span class="logo-secondary">by Mincka</span></div>
+                    </div>
+                    <div class="topbar-right">
+                        <button class="topbar-action-btn">
+                            <span class="material-icons-outlined">confirmation_number</span>
+                            Create a Ticket
+                        </button>
+                        <div class="topbar-mode-toggle">
+                            Light Mode
+                            <span class="material-icons-outlined" style="font-size: 16px;">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="auth-layout" style="min-height: 420px;">
+                    <div class="auth-form-side">
+                        <div class="auth-form">
+                            <div class="auth-title">Welcome Nicolas!</div>
+                            <div class="auth-subtitle">Set your password and complete your profile information</div>
+                            <div class="floating-input-group">
+                                <input type="password" class="floating-input" value="" placeholder=" ">
+                                <label class="floating-label">Password</label>
+                            </div>
+                            <div class="floating-input-group">
+                                <input type="password" class="floating-input" placeholder="Confirm Password">
+                            </div>
+                            <button class="btn btn-primary btn-full btn-lg">Submit & Continue</button>
+                        </div>
+                    </div>
+                    <div class="auth-testimonial-side" style="background: linear-gradient(135deg, var(--grey-700) 0%, var(--grey-900) 100%);">
+                        <div class="auth-testimonial-overlay">
+                            <div class="auth-tagline">Engineer Smarter, Build Faster, Spend Less.</div>
+                            <div class="auth-quote-author">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--grey-500);"></div>
+                                <div class="auth-quote-author-name">Fidel Gonzalez</div>
+                            </div>
+                            <div class="auth-quote-text">"We built Argus because mining deserves better than spreadsheets and disconnected systems. This is structural asset management, reimagined."</div>
+                            <div class="auth-carousel-dots">
+                                <div class="auth-carousel-dot active"></div>
+                                <div class="auth-carousel-dot"></div>
+                                <div class="auth-carousel-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="auth-footer">
+                    <span>Copyright © 2026 Mincka Engineering</span>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================
+             SETTINGS — MY ACCOUNT
+             ============================================ -->
+        <div class="demo-section">
+            <div class="demo-section-title">7. Settings — My Account</div>
+            <div class="demo-note">
+                <p>Settings tabs at top (My Account active). Sections: My Profile (avatar + change/remove, floating-label fields in 2-col grid), Account Security (email/password display with change links, 2-step toggle), Access Support (log out), Notification Preferences (toggle rows). "Save Changes" button bottom-right.</p>
+            </div>
+            <div class="demo-box" style="max-width: 800px;">
+                <div class="settings-tabs">
+                    <a class="settings-tab active">My Account</a>
+                    <a class="settings-tab">Notifications</a>
+                    <a class="settings-tab">User Management</a>
+                    <a class="settings-tab">Billing</a>
+                </div>
+                
+                <!-- My Profile -->
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <span class="material-icons-outlined">person_outline</span>
+                        <div class="settings-section-title">My Profile</div>
+                    </div>
+                    <div class="profile-image-upload">
+                        <div class="profile-avatar-large">
+                            <div style="width: 100%; height: 100%; background: var(--grey-300); display: flex; align-items: center; justify-content: center;">
+                                <span class="material-icons-outlined" style="color: var(--grey-500); font-size: 28px;">person</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="profile-image-actions">
+                                <button class="btn-change-image">+ Change Image</button>
+                                <button class="btn-remove-image">Remove Image</button>
+                            </div>
+                            <div class="profile-image-hint">We support PNG, JPEG under 2MB</div>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="floating-input-group">
+                            <input type="text" class="floating-input" value="Nicolas">
+                            <label class="floating-label">First Name</label>
+                        </div>
+                        <div class="floating-input-group">
+                            <input type="text" class="floating-input" value="Yaya">
+                            <label class="floating-label">Last Name</label>
+                        </div>
+                        <div class="floating-input-group">
+                            <input type="text" class="floating-input" value="+57 3555 5555">
+                            <label class="floating-label">Phone</label>
+                        </div>
+                        <div class="floating-input-group">
+                            <input type="text" class="floating-input" value="Engineer" style="cursor: pointer;">
+                            <label class="floating-label">Position</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-divider"></div>
+                
+                <!-- Account Security -->
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <span class="material-icons-outlined">verified_user</span>
+                        <div class="settings-section-title">Account Security</div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-row-content">
+                            <div style="font-size: 14px; color: var(--grey-500);">nicolasy@mincka.com.au</div>
+                        </div>
+                        <div class="settings-row-action"><a href="#">Change Email</a></div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-row-content">
+                            <div style="font-size: 14px; color: var(--grey-500);">••••••••••••</div>
+                        </div>
+                        <div class="settings-row-action"><a href="#">Change Password</a></div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-row-content">
+                            <div class="settings-row-label">2-Steps Verification</div>
+                            <div class="settings-row-description">add an additional layer of security to your account during login.</div>
+                        </div>
+                        <div class="settings-row-action">
+                            <div class="toggle active"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-divider"></div>
+                
+                <!-- Access Support -->
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <span class="material-icons-outlined">logout</span>
+                        <div class="settings-section-title">Access Support</div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-row-content">
+                            <div class="settings-row-label">Log Out of All Devices</div>
+                            <div class="settings-row-description">Log out of all active sessions on other devices besides this one</div>
+                        </div>
+                        <div class="settings-row-action"><a href="#">Log Out</a></div>
+                    </div>
+                </div>
+                
+                <div class="settings-divider"></div>
+                
+                <!-- Notification Preferences -->
+                <div class="settings-section">
+                    <div class="settings-section-header">
+                        <span class="material-icons-outlined">notifications_none</span>
+                        <div class="settings-section-title">Notifications Preference</div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-row-content">
+                            <div class="settings-row-label">Notification Name</div>
+                            <div class="settings-row-description">add an additional layer of security to your account during login.</div>
+                        </div>
+                        <div class="settings-row-action">
+                            <div class="toggle active"></div>
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-row-content">
+                            <div class="settings-row-label">Notification Name</div>
+                            <div class="settings-row-description">add an additional layer of security to your account during login.</div>
+                        </div>
+                        <div class="settings-row-action">
+                            <div class="toggle active"></div>
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <div class="settings-row-content">
+                            <div class="settings-row-label">Notification Name</div>
+                            <div class="settings-row-description">add an additional layer of security to your account during login.</div>
+                        </div>
+                        <div class="settings-row-action">
+                            <div class="toggle active"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-save-footer">
+                    <button class="btn btn-primary">Save Changes</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ============================================
+             FOOTER ACTIONS BAR
+             ============================================ -->
+        <div class="demo-section">
+            <div class="demo-section-title">8. Footer Actions Bar</div>
+            <div class="demo-note">
+                <p>Fixed bottom bar. Right-aligned: "Site Comments" ghost button with count badge + "AI Assistance" primary filled button. Shows on all site-level pages.</p>
+            </div>
+            <div style="background: white; border: 1px solid var(--grey-200); border-radius: var(--radius-lg); padding: 0 24px; height: 52px; display: flex; align-items: center; justify-content: flex-end; gap: 12px;">
+                <button class="footer-action-btn ghost">
+                    <span class="material-icons-outlined" style="font-size: 18px;">chat_bubble_outline</span>
+                    Site Comments
+                    <span class="count-badge">23</span>
+                </button>
+                <button class="footer-action-btn primary">
+                    <span class="material-icons-outlined" style="font-size: 18px;">smart_toy</span>
+                    AI Assistance
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+/* ============================================
+   Argus® by Mincka — Design Tokens
+   ============================================ */
+
+:root {
+  /* Primary — Cyan */
+  --primary-50: #ECFEFF;
+  --primary-100: #CFFAFE;
+  --primary-200: #A5F3FC;
+  --primary-300: #67E8F9;
+  --primary-400: #22D3EE;
+  --primary-500: #06B6D4;
+  --primary-600: #0891B2;
+  --primary-700: #0E7490;
+  --primary-800: #155E75;
+  --primary-900: #164E63;
+
+  /* Neutrals — Clean greys */
+  --grey-25: #FCFCFD;
+  --grey-50: #F9FAFB;
+  --grey-100: #F3F4F6;
+  --grey-200: #E5E7EB;
+  --grey-300: #D1D5DB;
+  --grey-400: #9CA3AF;
+  --grey-500: #6B7280;
+  --grey-600: #4B5563;
+  --grey-700: #374151;
+  --grey-800: #1F2937;
+  --grey-900: #111827;
+
+  /* Semantic */
+  --success: #10B981;
+  --success-light: #D1FAE5;
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+  --error: #EF4444;
+  --error-light: #FEE2E2;
+  --info: #3B82F6;
+  --info-light: #DBEAFE;
+
+  /* Risk Level Colors (platform badges, tables, labels) */
+  --risk-very-high: #EF4444;
+  --risk-very-high-bg: #FEE2E2;
+  --risk-high: #F97316;
+  --risk-high-bg: #FFF7ED;
+  --risk-medium: #F59E0B;
+  --risk-medium-bg: #FEF3C7;
+  --risk-low: #10B981;
+  --risk-low-bg: #D1FAE5;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 100px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+
+  /* Layout */
+  --sidebar-width: 240px;
+  --topbar-height: 56px;
+}
