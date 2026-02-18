@@ -113,8 +113,11 @@ async function getPSDData() {
             baseUrl = window.location.origin;
         }
         
-        // Try multiple possible paths
+        // Try multiple possible paths (prioritize known working paths)
         const possiblePaths = [
+            `${baseUrl}/shm/static/psd_data.json`,  // Remote shm/static path
+            './shm/static/psd_data.json',  // Local shm/static folder
+            '/shm/static/psd_data.json',    // Local shm/static folder (absolute)
             './static/psd_data.json',
             '/static/psd_data.json',
             `${baseUrl}/static/psd_data.json`
@@ -125,6 +128,7 @@ async function getPSDData() {
                 const response = await fetch(path);
                 if (response.ok) {
                     const data = await response.json();
+                    console.log(`Successfully loaded PSD data from: ${path}`);
                     return { success: true, data };
                 }
             } catch (error) {

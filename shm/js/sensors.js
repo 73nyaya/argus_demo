@@ -110,10 +110,23 @@ function selectSensor(sensorId) {
  */
 async function loadSensorsFromStatic() {
     try {
-        // Try multiple possible paths
+        // Determine base URL from API_BASE_URL
+        let baseUrl = '';
+        if (window.API_BASE_URL) {
+            const url = new URL(window.API_BASE_URL);
+            baseUrl = `${url.protocol}//${url.host}`;
+        } else {
+            baseUrl = window.location.origin;
+        }
+        
+        // Try multiple possible paths (prioritize known working paths)
         const possiblePaths = [
-            './static/sensors_p.json',
-            '/static/sensors_p.json',
+            `${baseUrl}/shm/static/sensors_p.json`,  // Remote shm/static path
+            './shm/static/sensors_p.json',  // Local shm/static folder
+            '/shm/static/sensors_p.json',    // Local shm/static folder (absolute)
+            './static/sensors_p.json',  // Local static folder
+            '/static/sensors_p.json',    // Local static folder (absolute)
+            `${baseUrl}/static/sensors_p.json`,  // Remote static folder
             'static/sensors_p.json'
         ];
         

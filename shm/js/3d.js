@@ -465,12 +465,12 @@ class Scene3D {
                 baseUrl = window.location.origin;
             }
             
-            // Try multiple possible paths (local static folder first, then remote)
+            // Try multiple possible paths (prioritize known working path)
             const possiblePaths = [
+                `${baseUrl}/assets/data/Nodes.txt`,  // Remote original path (known working)
                 './static/Nodes.txt',  // Local static folder
                 '/static/Nodes.txt',    // Local static folder (absolute)
                 `${baseUrl}/static/Nodes.txt`,  // Remote static folder
-                `${baseUrl}/assets/data/Nodes.txt`,  // Remote original path
                 `${baseUrl}/data/Nodes.txt`,
                 `${baseUrl}/Nodes.txt`
             ];
@@ -531,12 +531,12 @@ class Scene3D {
                 baseUrl = window.location.origin;
             }
             
-            // Try multiple possible paths (local static folder first, then remote)
+            // Try multiple possible paths (prioritize known working path)
             const possiblePaths = [
+                `${baseUrl}/assets/data/Connc.txt`,  // Remote original path (known working)
                 './static/Connc.txt',  // Local static folder
                 '/static/Connc.txt',    // Local static folder (absolute)
                 `${baseUrl}/static/Connc.txt`,  // Remote static folder
-                `${baseUrl}/assets/data/Connc.txt`,  // Remote original path
                 `${baseUrl}/data/Connc.txt`,
                 `${baseUrl}/Connc.txt`
             ];
@@ -595,10 +595,10 @@ class Scene3D {
             }
             
             const possiblePaths = [
+                `${baseUrl}/assets/data/Frames-2.json`,  // Remote original path (known working)
                 './static/Frames-2.json',
                 '/static/Frames-2.json',
                 `${baseUrl}/static/Frames-2.json`,
-                `${baseUrl}/assets/data/Frames-2.json`,
                 `${baseUrl}/data/Frames-2.json`
             ];
             
@@ -646,10 +646,10 @@ class Scene3D {
             }
             
             const possiblePaths = [
+                `${baseUrl}/assets/data/Elementid-2.txt`,  // Remote original path (known working)
                 './static/Elementid-2.txt',
                 '/static/Elementid-2.txt',
                 `${baseUrl}/static/Elementid-2.txt`,
-                `${baseUrl}/assets/data/Elementid-2.txt`,
                 `${baseUrl}/data/Elementid-2.txt`
             ];
             

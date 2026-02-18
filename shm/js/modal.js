@@ -10,6 +10,11 @@ let currentModal3D = null;
  */
 function initModal() {
     const modalModeSelect = document.getElementById('modal-mode');
+    if (!modalModeSelect) {
+        console.error('Modal mode select element not found');
+        return;
+    }
+    
     modalModeSelect.addEventListener('change', () => {
         loadModalData(modalModeSelect.value);
     });
@@ -32,10 +37,23 @@ async function loadModalDataFromFile(mode) {
             baseUrl = window.location.origin;
         }
         
-        // Try multiple possible paths
+        // Map mode to filename (Mode1.txt, Mode2.txt)
+        // Mode values are "Mode1" or "Mode2" from the select element
+        const modeFilename = mode + '.txt';
+        
+        console.log(`Loading modal data for mode: ${mode}, filename: ${modeFilename}`);
+        
+        // Try multiple possible paths (prioritize LOCAL paths first since Mode1/Mode2 are only local)
         const possiblePaths = [
-            `./static/${mode}.txt`,
+            `./shm/static/${modeFilename}`,  // Local shm/static folder (relative)
+            `/shm/static/${modeFilename}`,    // Local shm/static folder (absolute)
+            `shm/static/${modeFilename}`,     // Local shm/static folder (no leading slash)
+            `./static/${modeFilename}`,  // Local static folder
+            `/static/${modeFilename}`,    // Local static folder (absolute)
+            `./static/${mode}.txt`,  // Fallback: try with original mode value
             `/static/${mode}.txt`,
+            `${baseUrl}/shm/static/${modeFilename}`,  // Remote shm/static path (fallback)
+            `${baseUrl}/static/${modeFilename}`,  // Remote static folder (fallback)
             `${baseUrl}/static/${mode}.txt`
         ];
         
@@ -465,7 +483,23 @@ async function displayModal3D(data, mode) {
             return;
         }
         
+        // Ensure container is visible and properly sized (matching other sections)
+        container.style.display = 'block';
+        container.style.width = '100%';
+        
+        // Wait a bit for layout to settle (matching stress.js pattern)
+        await new Promise(resolve => setTimeout(resolve, 10));
+        
+        // Check if container has dimensions
+        if (container.offsetWidth === 0 || container.offsetHeight === 0) {
+            console.warn('Modal 3D container has no dimensions, waiting longer for layout...');
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
         console.log('Initializing 3D visualization with modal nodes');
+        console.log(`Container dimensions: ${container.offsetWidth}x${container.offsetHeight}`);
+        console.log(`Modal nodes count: ${modalNodes.length}`);
+        
         // Create scene with modal nodes (these are the displaced positions)
         currentModal3D = await init3DVisualizationWithNodes(
             'modal-3d-container', 
@@ -476,12 +510,22 @@ async function displayModal3D(data, mode) {
         
         if (currentModal3D) {
             console.log('3D visualization initialized successfully');
+            // Force a render to ensure the scene is visible
+            if (currentModal3D.renderer && currentModal3D.camera && currentModal3D.scene) {
+                currentModal3D.renderer.render(currentModal3D.scene, currentModal3D.camera);
+            }
         } else {
-            console.error('3D visualization returned null');
+            console.error('3D visualization returned null - check console for errors above');
+            console.error('This usually means connections failed to load. Check network tab for Connc.txt requests.');
+            container.innerHTML = '<div class="error">Failed to initialize 3D visualization. Check console for details.</div>';
         }
     } catch (error) {
         console.error('Error initializing 3D visualization:', error);
         console.error(error.stack);
+        const container = document.getElementById('modal-3d-container');
+        if (container) {
+            container.innerHTML = `<div class="error">Error initializing 3D visualization: ${error.message}</div>`;
+        }
     }
 }
 
