@@ -62,7 +62,8 @@ function renderSiteTabs(slug, activeTab) {
     { id: 'tasks', label: 'Tasks' },
     { id: 'schedule', label: 'Schedule' },
     { id: 'documents', label: 'Documents' },
-    { id: 'analytics', label: 'Analytics' }
+    { id: 'analytics', label: 'Analytics' },
+    { id: 'shm', label: 'SHM' }
   ];
   var html = '<div class="site-tabs">';
   tabs.forEach(function (t) {

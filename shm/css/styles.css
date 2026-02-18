@@ -1,0 +1,692 @@
+/* Basic Reset and Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    color: var(--grey-900);
+    background-color: var(--grey-50);
+    min-height: 100vh; /* Minimum viewport height */
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    background-color: white;
+    color: var(--grey-900);
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--grey-200);
+}
+
+header h1 {
+    margin-bottom: 1rem;
+    color: var(--grey-900);
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    background: white;
+    color: var(--grey-600);
+    border: 1px solid var(--grey-300);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    outline: none;
+}
+
+.nav-btn:hover {
+    background: var(--grey-50);
+    border-color: var(--grey-400);
+    color: var(--grey-700);
+}
+
+.nav-btn.active {
+    background: var(--primary-600);
+    color: white;
+    border-color: var(--primary-600);
+}
+
+.nav-btn:focus-visible {
+    box-shadow: 0 0 0 3px var(--primary-200);
+}
+
+main {
+    max-width: 95vw; /* 95% of viewport width */
+    width: 100%;
+    margin: 2vh auto; /* 2% of viewport height */
+    padding: 0 1vw; /* 1% of viewport width */
+    flex: 1; /* Take remaining space */
+}
+
+.content-section {
+    display: none;
+    background-color: white;
+    padding: 2vh 2vw; /* 2% viewport height and width */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--grey-200);
+    min-height: calc(100vh - 200px); /* Ensure section fills viewport */
+}
+
+.content-section.active {
+    display: block;
+}
+
+.content-section h2 {
+    margin-bottom: 1.5rem;
+    color: var(--grey-900);
+    border-bottom: 2px solid var(--primary-600);
+    padding-bottom: 0.5rem;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.controls {
+    margin-bottom: 1.5rem;
+    padding: 16px;
+    background-color: var(--grey-50);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--grey-200);
+}
+
+.controls label {
+    margin-right: 0.5rem;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--grey-700);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.controls select {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--grey-900);
+    background: white;
+    border: 1px solid var(--grey-300);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    outline: none;
+    cursor: pointer;
+}
+
+.controls select:hover {
+    border-color: var(--grey-400);
+}
+
+.controls select:focus {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+/* Stress Analysis - Top container with controls and findings side by side */
+#stress-top-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2vw;
+    margin-bottom: 2vh;
+    align-items: start;
+}
+
+#stress-top-container .controls {
+    margin-bottom: 0;
+}
+
+#stress-findings {
+    height: auto;
+    min-height: 200px;
+    max-height: 30vh;
+    overflow-y: auto;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    background-color: var(--grey-50);
+}
+
+/* Code Compliance Section */
+#code-top-row {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2vw;
+    margin-bottom: 2vh;
+    align-items: stretch;
+}
+
+#code-top-row .controls {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#code-structural-note {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+#code-3d-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2vw;
+    margin-bottom: 2vh;
+    align-items: start;
+}
+
+#code-3d-container {
+    width: 100%;
+    height: 50vh;
+    min-height: 400px;
+    max-height: 600px;
+    display: block;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    background: white;
+}
+
+#code-colorbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+}
+
+.structural-note {
+    background-color: white;
+    border: 2px solid var(--primary-600);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.structural-note h3 {
+    color: var(--grey-900);
+    margin-bottom: 0.75rem;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-600);
+    padding-bottom: 0.5rem;
+}
+
+.structural-note p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+    font-size: 14px;
+    color: var(--grey-700);
+}
+
+.structural-note p strong {
+    color: var(--grey-900);
+    font-weight: 600;
+}
+
+.structural-note .warning {
+    background-color: var(--warning-light);
+    border-left: 4px solid var(--warning);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin-top: 1rem;
+    color: #92400E;
+}
+
+.structural-note .success {
+    background-color: var(--success-light);
+    border-left: 4px solid var(--success);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin-top: 1rem;
+    color: #065F46;
+}
+
+/* Table Styles - Matching main website .data-table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background-color: white;
+}
+
+table th,
+table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--grey-100);
+    font-size: 13px;
+    color: var(--grey-700);
+    vertical-align: middle;
+}
+
+table th {
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--grey-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--grey-50);
+    border-bottom: 1px solid var(--grey-200);
+    white-space: nowrap;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table tr:hover td {
+    background: var(--grey-50);
+}
+
+table tr.status-yes {
+    background-color: var(--success-light);
+}
+
+table tr.status-no {
+    background-color: var(--error-light);
+}
+
+table tr.noise-low {
+    color: #065F46;
+}
+
+table tr.noise-medium {
+    color: #92400E;
+}
+
+table tr.noise-high {
+    color: #991B1B;
+    font-weight: 600;
+}
+
+/* Stress level classes */
+table tr.stress-low {
+    background-color: var(--success-light);
+}
+
+table tr.stress-medium {
+    background-color: var(--warning-light);
+}
+
+table tr.stress-high {
+    background-color: var(--warning-light);
+}
+
+table tr.stress-critical {
+    background-color: var(--error-light);
+    font-weight: 600;
+}
+
+/* Compliance classes */
+table tr.compliant {
+    background-color: var(--success-light);
+}
+
+table tr.non-compliant {
+    background-color: var(--error-light);
+    font-weight: 600;
+}
+
+/* Inspection classes */
+table tr.inspection-required {
+    background-color: var(--error-light);
+    font-weight: 600;
+}
+
+table tr.inspection-not-required {
+    background-color: var(--success-light);
+}
+
+/* Selected row */
+table tr.selected {
+    background-color: var(--primary-50) !important;
+    border: 2px solid var(--primary-600);
+}
+
+/* Chart Container */
+canvas {
+    max-width: 100%;
+    height: 400px;
+    margin: 1rem 0;
+}
+
+
+/* Sensors data container: table and 3D side by side */
+#sensors-data-container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: 24px;
+    margin-top: 2vh; /* 2% of viewport height */
+    height: 70vh;
+    min-height: 500px;
+}
+
+/* 3D Visualization Container - In grid with table */
+#sensors-3d-container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    background: white;
+}
+
+/* Sensors table container - scrollable, same height as chart */
+#sensors-table-container {
+    height: 100%; /* Full height of parent container */
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    min-height: 400px;
+    background: white;
+}
+
+#sensors-table-container table {
+    margin: 0;
+}
+
+/* Stress Analysis Section - Viewport based */
+#stress-3d-container {
+    width: 100%;
+    height: 50vh;
+    min-height: 400px;
+    max-height: 600px;
+    margin-bottom: 2vh;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    background: white;
+}
+
+
+/* Modal Analysis Section - Viewport based */
+#modal-3d-container {
+    width: 100%;
+    height: 50vh;
+    min-height: 400px;
+    max-height: 600px;
+    margin-bottom: 2vh;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    background: white;
+}
+
+#modal-data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vw;
+    margin-top: 2vh;
+    height: calc(45vh - 2rem);
+    min-height: 400px;
+}
+
+#modal-table-container {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    background: white;
+}
+
+#modal-chart-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    background-color: var(--grey-50);
+}
+
+#modal-chart-container h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+}
+
+#modal-chart-container canvas {
+    flex: 1;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0;
+}
+
+#modal-info-container {
+    height: 100%;
+    overflow-y: auto;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    background-color: var(--grey-50);
+}
+
+/* Crack Detection Section - Viewport based */
+#crack-3d-container {
+    width: 100%;
+    height: 50vh;
+    min-height: 400px;
+    max-height: 600px;
+    margin-bottom: 2vh;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    background: white;
+}
+
+#crack-data-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vw;
+    margin-top: 2vh;
+    height: calc(45vh - 2rem);
+    min-height: 400px;
+}
+
+#crack-table-container {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    background: white;
+}
+
+#crack-info-container {
+    height: 100%;
+    overflow-y: auto;
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    background-color: var(--grey-50);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    #sensors-data-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: auto;
+    }
+    
+    #modal-data-container,
+    #crack-data-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: auto;
+    }
+    
+    #stress-top-container {
+        grid-template-columns: 1fr;
+        gap: 2vh;
+    }
+    
+    #code-top-row {
+        grid-template-columns: 1fr;
+        gap: 2vh;
+    }
+    
+    #code-3d-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2vh;
+    }
+    
+    #code-colorbar-container {
+        min-width: 100%;
+        justify-content: flex-start;
+    }
+    
+    #sensors-3d-container,
+    #stress-3d-container,
+    #code-3d-container,
+    #modal-3d-container,
+    #crack-3d-container {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .structural-note {
+        padding: 1rem;
+    }
+    
+    .structural-note h3 {
+        font-size: 1.2rem;
+    }
+    
+    #sensors-table-container,
+    #stress-findings,
+    #modal-table-container,
+    #modal-chart-info-container,
+    #crack-table-container,
+    #crack-info-container {
+        min-height: 300px;
+        height: 40vh;
+    }
+    
+    #stress-findings {
+        max-height: none;
+        height: 40vh;
+    }
+}
+
+@media (min-width: 768px) {
+    #stress-data-container,
+    #code-data-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Loading and Error States */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--grey-500);
+    font-size: 14px;
+}
+
+.error {
+    background-color: var(--error-light);
+    color: #991B1B;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    border: 1px solid var(--error);
+    font-size: 14px;
+}
+
+.success {
+    background-color: var(--success-light);
+    color: #065F46;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    border: 1px solid var(--success);
+    font-size: 14px;
+}
+
+/* Info Containers */
+#modal-info,
+#crack-info {
+    padding: 16px;
+    background-color: var(--grey-50);
+    border-radius: var(--radius-md);
+    margin-top: 1rem;
+}
+
+.info-item {
+    margin: 0.5rem 0;
+    padding: 12px;
+    background-color: white;
+    border-left: 3px solid var(--primary-600);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: var(--grey-700);
+}
+
+footer {
+    text-align: center;
+    padding: 16px;
+    background-color: white;
+    color: var(--grey-600);
+    margin-top: 2rem;
+    border-top: 1px solid var(--grey-200);
+    font-size: 13px;
+}
+
+/* Quantity Color Bar Styles */
+.quantityColorBar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.quantityColorBar .barContainer {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+
+.quantityColorBar .colorBar {
+    position: relative;
+    border: 1px solid var(--grey-300);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.quantityColorBar .measure {
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+}
+
+/* Old wrapper styles removed - using viewport-based layout */

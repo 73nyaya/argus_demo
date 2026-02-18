@@ -1,4 +1,4 @@
-/* global SITES, renderDashboard, renderSiteHome, renderAssets, renderAssetDetail, renderDefectDetail, renderDefects, renderTasks, renderSchedule, renderDocuments, renderAnalytics, renderResources, renderSettings */
+/* global SITES, renderDashboard, renderSiteHome, renderAssets, renderAssetDetail, renderDefectDetail, renderDefects, renderTasks, renderSchedule, renderDocuments, renderAnalytics, renderResources, renderSettings, renderSHM */
 
 function render404(container) {
   container.innerHTML = '<div class="page-title">Page not found</div><p>The requested page could not be found.</p>';
@@ -107,6 +107,13 @@ function handleRoute() {
           renderAnalytics(main, slug);
         } else {
           main.innerHTML = '<div class="page-title">Analytics</div><p>Could not load. Ensure <code>js/views-bundle.js</code> loads (check Network tab for 404).</p>';
+        }
+        return;
+      case 'shm':
+        if (typeof renderSHM === 'function') {
+          renderSHM(main, slug);
+        } else {
+          main.innerHTML = '<div class="page-title">SHM</div><p>Could not load. Ensure <code>js/views-bundle.js</code> loads (check Network tab for 404).</p>';
         }
         return;
     }

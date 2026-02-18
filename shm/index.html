@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHM - Structural Health Monitoring</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js"></script>
+    <!-- OrbitControls for Three.js -->
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r125/examples/js/controls/OrbitControls.js"></script>
+    <!-- Chart.js library for real-time plots -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>SHM - Structural Health Monitoring</h1>
+        <nav>
+            <button class="nav-btn active" data-section="sensors">Sensors Status</button>
+            <button class="nav-btn" data-section="stress">Stress Analysis</button>
+            <button class="nav-btn" data-section="code">Code Compliance</button>
+            <button class="nav-btn" data-section="modal">Modal Analysis</button>
+            <button class="nav-btn" data-section="crack">Crack Detection</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sensors Status Section -->
+        <section id="sensors" class="content-section active">
+            <h2>Sensors Status</h2>
+            <!-- Table and 3D Visualization - Side by side -->
+            <div id="sensors-data-container">
+                <div id="sensors-table-container"></div>
+                <div id="sensors-3d-container"></div>
+            </div>
+        </section>
+
+        <!-- Stress Analysis Section -->
+        <section id="stress" class="content-section">
+            <h2>Stress Analysis</h2>
+            <div id="stress-top-container">
+                <div class="controls">
+                    <label for="stress-type">Stress Type:</label>
+                    <select id="stress-type">
+                        <option value="Sig_Ax">Axial Stress</option>
+                        <option value="Sig_Mx">Bending Stress (x)</option>
+                        <option value="Sig_My">Bending Stress (y)</option>
+                        <option value="Tau_Vx">Shear Stress (x)</option>
+                        <option value="Tau_Vy">Shear Stress (y)</option>
+                    </select>
+                </div>
+                <div id="stress-findings"></div>
+            </div>
+            <div id="stress-3d-container"></div>
+            <div id="stress-table-container" style="display: none;"></div>
+        </section>
+
+        <!-- Code Compliance Section -->
+        <section id="code" class="content-section">
+            <h2>Code Compliance</h2>
+            <div id="code-top-row">
+                <div class="controls">
+                    <label for="code-type">Limit State:</label>
+                    <select id="code-type">
+                        <option value="uls">Ultimate Limit State</option>
+                        <option value="sls">Serviceability Limit State</option>
+                    </select>
+                </div>
+                <div id="code-structural-note"></div>
+            </div>
+            <div id="code-3d-wrapper">
+                <div id="code-3d-container"></div>
+                <div id="code-colorbar-container"></div>
+            </div>
+            <div id="code-table-container" style="display: none;"></div>
+        </section>
+
+        <!-- Modal Analysis Section -->
+        <section id="modal" class="content-section">
+            <h2>Modal Analysis</h2>
+            <div class="controls">
+                <label for="modal-mode">Mode:</label>
+                <select id="modal-mode">
+                    <option value="Mode1">Mode 1</option>
+                    <option value="Mode2">Mode 2</option>
+                </select>
+            </div>
+            <div id="modal-3d-container"></div>
+            <div id="modal-data-container">
+                <div id="modal-chart-container">
+                    <h3>Power Spectral Density</h3>
+                    <canvas id="modal-chart"></canvas>
+                </div>
+                <div id="modal-info-container">
+                    <h3>Modal Information</h3>
+                    <div id="modal-info"></div>
+                </div>
+            </div>
+            <!-- Hidden container for error messages and table (if needed) -->
+            <div id="modal-table-container" style="display: none;"></div>
+        </section>
+
+        <!-- Crack Detection Section -->
+        <section id="crack" class="content-section">
+            <h2>Crack Detection</h2>
+            <div id="crack-3d-container"></div>
+            <div id="crack-data-container">
+                <div id="crack-table-container"></div>
+                <div id="crack-info-container">
+                    <h3>Crack Detection Results</h3>
+                    <div id="crack-info"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>SHM System - Simplified Version</p>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- API Configuration: Set API_BASE_URL before loading api.js -->
+    <!-- Option 1: Use remote API (mincka-shm.com) -->
+    <script>
+        window.API_BASE_URL = 'https://mincka-shm.com/api';
+    </script>
+    <!-- Option 2: Use local API (uncomment and comment out Option 1) -->
+    <!-- <script>
+        window.API_BASE_URL = '/api';
+    </script> -->
+    <!-- Option 3: Use data attribute on <html> tag: <html data-api-base="https://mincka-shm.com/api"> -->
+    
+    <script src="js/api.js"></script>
+    <script src="js/quantityColorBar.js"></script>
+    <script src="js/3d.js"></script>
+    <script src="js/sensors.js"></script>
+    <script src="js/stress.js"></script>
+    <script src="js/code.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/crack.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

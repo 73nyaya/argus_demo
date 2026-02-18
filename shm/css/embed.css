@@ -1,0 +1,340 @@
+/* =========================================================
+   SHM Embedded Styles (Argus app)
+   Scoped to SHM only to avoid leaking into the host SPA.
+   ========================================================= */
+
+/* -----------------------------------------------------------------
+   Typography (scoped)
+   Many SHM modules generate their own <h3>/<p>/<ul> markup via JS.
+   Keep this scoped to .shm-wrapper so it can't affect the host app.
+   ----------------------------------------------------------------- */
+.shm-wrapper {
+  color: var(--grey-900);
+  font-family: inherit;
+}
+
+.shm-wrapper h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--grey-900);
+}
+
+.shm-wrapper p {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: var(--grey-600);
+  line-height: 1.6;
+}
+
+.shm-wrapper p strong {
+  color: var(--grey-900);
+  font-weight: 600;
+}
+
+.shm-wrapper .shm-muted-text {
+  color: var(--grey-500);
+  margin-bottom: 16px;
+}
+
+.shm-wrapper ul {
+  margin: 8px 0 0 20px;
+  padding: 0;
+  font-size: 13px;
+  color: var(--grey-600);
+}
+
+.shm-wrapper li { margin: 4px 0; }
+
+/* Nav */
+.shm-wrapper .shm-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.shm-wrapper .nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  background: white;
+  color: var(--grey-600);
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.shm-wrapper .nav-btn:hover {
+  background: var(--grey-50);
+  border-color: var(--grey-400);
+  color: var(--grey-700);
+}
+
+.shm-wrapper .nav-btn.active {
+  background: var(--primary-600);
+  color: white;
+  border-color: var(--primary-600);
+}
+
+.shm-wrapper .nav-btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--primary-200);
+}
+
+/* Sections */
+.shm-wrapper .content-section {
+  display: none;
+  background-color: white;
+  padding: 2vh 2vw;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--grey-200);
+  min-height: 520px;
+}
+
+.shm-wrapper .content-section.active {
+  display: block;
+}
+
+/* Controls */
+.shm-wrapper .controls {
+  margin-bottom: 1.5rem;
+  padding: 16px;
+  background-color: var(--grey-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--grey-200);
+}
+
+.shm-wrapper .controls label {
+  margin-right: 0.5rem;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--grey-700);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.shm-wrapper .controls select {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--grey-900);
+  background: white;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  outline: none;
+  cursor: pointer;
+}
+
+.shm-wrapper .controls select:hover { border-color: var(--grey-400); }
+.shm-wrapper .controls select:focus { border-color: var(--primary-500); box-shadow: 0 0 0 3px var(--primary-100); }
+
+/* Stress findings */
+.shm-wrapper #stress-findings {
+  height: auto;
+  min-height: 200px;
+  max-height: 30vh;
+  overflow-y: auto;
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  background-color: var(--grey-50);
+}
+
+/* Structural note */
+.shm-wrapper .structural-note {
+  background-color: white;
+  border: 2px solid var(--primary-600);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.shm-wrapper .structural-note h3 {
+  color: var(--grey-900);
+  margin-bottom: 0.75rem;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary-600);
+  padding-bottom: 0.5rem;
+}
+
+.shm-wrapper .structural-note p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  font-size: 14px;
+  color: var(--grey-700);
+}
+
+.shm-wrapper .structural-note p strong {
+  color: var(--grey-900);
+  font-weight: 600;
+}
+
+.shm-wrapper .structural-note .warning {
+  background-color: var(--warning-light);
+  border-left: 4px solid var(--warning);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+  color: #92400E;
+}
+
+.shm-wrapper .structural-note .success {
+  background-color: var(--success-light);
+  border-left: 4px solid var(--success);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+  color: #065F46;
+}
+
+/* Table styles */
+.shm-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background-color: white;
+}
+
+.shm-wrapper table th,
+.shm-wrapper table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--grey-100);
+  font-size: 13px;
+  color: var(--grey-700);
+  vertical-align: middle;
+}
+
+.shm-wrapper table th {
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--grey-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--grey-50);
+  border-bottom: 1px solid var(--grey-200);
+  white-space: nowrap;
+}
+
+.shm-wrapper table tr:last-child td { border-bottom: none; }
+.shm-wrapper table tr:hover td { background: var(--grey-50); }
+
+.shm-wrapper table tr.status-yes { background-color: var(--success-light); }
+.shm-wrapper table tr.status-no { background-color: var(--error-light); }
+
+.shm-wrapper table tr.noise-low { color: #065F46; }
+.shm-wrapper table tr.noise-medium { color: #92400E; }
+.shm-wrapper table tr.noise-high { color: #991B1B; font-weight: 600; }
+
+.shm-wrapper table tr.stress-low { background-color: var(--success-light); }
+.shm-wrapper table tr.stress-medium { background-color: var(--warning-light); }
+.shm-wrapper table tr.stress-high { background-color: var(--warning-light); }
+.shm-wrapper table tr.stress-critical { background-color: var(--error-light); font-weight: 600; }
+
+.shm-wrapper table tr.compliant { background-color: var(--success-light); }
+.shm-wrapper table tr.non-compliant { background-color: var(--error-light); font-weight: 600; }
+
+.shm-wrapper table tr.inspection-required { background-color: var(--error-light); font-weight: 600; }
+.shm-wrapper table tr.inspection-not-required { background-color: var(--success-light); }
+
+.shm-wrapper table tr.selected {
+  background-color: var(--primary-50) !important;
+  border: 2px solid var(--primary-600);
+}
+
+/* Charts */
+.shm-wrapper canvas {
+  max-width: 100%;
+  height: 400px;
+  margin: 1rem 0;
+}
+
+/* Info containers */
+.shm-wrapper #modal-info,
+.shm-wrapper #crack-info {
+  padding: 16px;
+  background-color: var(--grey-50);
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+}
+
+.shm-wrapper .info-item {
+  margin: 0.5rem 0;
+  padding: 12px;
+  background-color: white;
+  border-left: 3px solid var(--primary-600);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--grey-700);
+}
+
+/* Loading and states */
+.shm-wrapper .loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--grey-500);
+  font-size: 14px;
+}
+
+.shm-wrapper .error {
+  background-color: var(--error-light);
+  color: #991B1B;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin: 1rem 0;
+  border: 1px solid var(--error);
+  font-size: 14px;
+}
+
+.shm-wrapper .success {
+  background-color: var(--success-light);
+  color: #065F46;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin: 1rem 0;
+  border: 1px solid var(--success);
+  font-size: 14px;
+}
+
+/* Quantity color bar */
+.shm-wrapper .quantityColorBar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.shm-wrapper .quantityColorBar .barContainer {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.shm-wrapper .quantityColorBar .colorBar {
+  position: relative;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.shm-wrapper .quantityColorBar .measure {
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+}
+
