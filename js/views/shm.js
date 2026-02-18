@@ -196,8 +196,8 @@ function renderSHMHTML(container) {
 
     // Stress Analysis Section
     '<section id="stress" class="content-section">' +
-    '<div id="stress-top-container" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; margin-bottom: 24px; align-items: start;">' +
-    '<div class="controls" style="padding: 16px; background: var(--grey-50); border-radius: var(--radius-md); border: 1px solid var(--grey-200);">' +
+    '<div id="stress-top-container" style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; margin-bottom: 24px; align-items: stretch;">' +
+    '<div class="controls" style="padding: 16px; background: var(--grey-50); border-radius: var(--radius-md); border: 1px solid var(--grey-200); display: flex; flex-direction: column; justify-content: center; margin-bottom: 0;">' +
     '<label for="stress-type" style="margin-right: 8px; font-weight: 600; font-size: 14px; color: var(--grey-700); display: block; margin-bottom: 6px;">Stress Type:</label>' +
     '<select id="stress-type" style="padding: 10px 14px; border: 1px solid var(--grey-300); border-radius: var(--radius-md); font-size: 14px; width: 100%; font-family: inherit; color: var(--grey-900); background: white; cursor: pointer;">' +
     '<option value="Sig_Ax">Axial Stress</option>' +
@@ -207,7 +207,7 @@ function renderSHMHTML(container) {
     '<option value="Tau_Vy">Shear Stress (y)</option>' +
     '</select>' +
     '</div>' +
-    '<div id="stress-findings" style="height: auto; min-height: 200px; max-height: 30vh; overflow-y: auto; border: 1px solid var(--grey-200); border-radius: var(--radius-md); padding: 16px; background: var(--grey-50);"></div>' +
+    '<div id="stress-findings" style="height: 100%; display: flex; flex-direction: column; justify-content: center; border: 1px solid var(--grey-200); border-radius: var(--radius-md); padding: 16px; background: var(--grey-50);"></div>' +
     '</div>' +
     '<div id="stress-3d-container" style="width: 100%; height: 50vh; min-height: 400px; max-height: 600px; margin-bottom: 24px; border: 1px solid var(--grey-200); border-radius: var(--radius-md); background: white;"></div>' +
     '<div id="stress-table-container" style="display: none;"></div>' +
@@ -223,7 +223,7 @@ function renderSHMHTML(container) {
     '<option value="sls">Serviceability Limit State</option>' +
     '</select>' +
     '</div>' +
-    '<div id="code-structural-note" style="width: 100%; display: flex; align-items: stretch;"></div>' +
+    '<div id="code-structural-note" style="width: 100%; height: 100%; display: flex; align-items: stretch;"></div>' +
     '</div>' +
     '<div id="code-3d-wrapper" style="display: grid; grid-template-columns: 1fr auto; gap: 24px; margin-bottom: 24px; align-items: start;">' +
     '<div id="code-3d-container" style="width: 100%; height: 50vh; min-height: 400px; max-height: 600px; border: 1px solid var(--grey-200); border-radius: var(--radius-md); background: white;"></div>' +
@@ -241,13 +241,13 @@ function renderSHMHTML(container) {
     '<option value="Mode2">Mode 2</option>' +
     '</select>' +
     '</div>' +
-    '<div id="modal-3d-container" style="width: 100%; height: 50vh; min-height: 400px; max-height: 600px; margin-bottom: 24px; border: 1px solid var(--grey-200); border-radius: var(--radius-md); background: white;"></div>' +
-    '<div id="modal-data-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; height: calc(45vh - 2rem); min-height: 400px;">' +
-    '<div id="modal-chart-container" style="height: 100%; display: flex; flex-direction: column; border: 1px solid var(--grey-200); border-radius: var(--radius-md); padding: 16px; background: var(--grey-50);">' +
-    '<h3>Power Spectral Density</h3>' +
+    '<div id="modal-3d-container" style="width: 100%; height: 40vh; min-height: 350px; max-height: 500px; margin-bottom: 16px; border: 1px solid var(--grey-200); border-radius: var(--radius-md); background: white;"></div>' +
+    '<div id="modal-data-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; height: calc(40vh - 2rem); min-height: 350px; overflow: hidden;">' +
+    '<div id="modal-chart-container" style="height: 100%; min-height: 0; max-height: 100%; display: flex; flex-direction: column; border: 1px solid var(--grey-200); border-radius: var(--radius-md); padding: 16px; background: var(--grey-50); overflow: hidden;">' +
+    '<h3 style="flex-shrink: 0; margin: 0 0 1rem 0;">Power Spectral Density</h3>' +
     '<canvas id="modal-chart" style="flex: 1; width: 100% !important; height: 100% !important; min-height: 0;"></canvas>' +
     '</div>' +
-    '<div id="modal-info-container" style="height: 100%; overflow-y: auto; border: 1px solid var(--grey-200); border-radius: var(--radius-md); padding: 16px; background: var(--grey-50);">' +
+    '<div id="modal-info-container" style="height: 100%; min-height: 0; max-height: 100%; overflow-y: auto; border: 1px solid var(--grey-200); border-radius: var(--radius-md); padding: 16px; background: var(--grey-50);">' +
     '<h3>Modal Information</h3>' +
     '<div id="modal-info"></div>' +
     '</div>' +

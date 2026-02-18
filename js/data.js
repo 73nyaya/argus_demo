@@ -17,7 +17,7 @@ const SITES = {
     totalTasks: 56, tasksNotStarted: 30, tasksInProgress: 14, tasksCompleted: 12
   },
   'hail-creek': {
-    id: 'hail-creek', name: 'Hail Creek Open Cut', slug: 'hail-creek', prefix: 'HC',
+    id: 'hail-creek', name: 'Quinto Mayor Open Cut', slug: 'hail-creek', prefix: 'HC',
     customer: 'Glencore', year: 2026,
     totalDefects: 534, closedDefects: 434, openDefects: 100, remediationRate: 81,
     totalTasks: 42, tasksNotStarted: 10, tasksInProgress: 12, tasksCompleted: 20
@@ -163,7 +163,7 @@ const SITES_BY_YEAR = {
       assetCount: 7
     },
     'hail-creek': {
-      id: 'hail-creek', name: 'Hail Creek Open Cut', slug: 'hail-creek', prefix: 'HC',
+      id: 'hail-creek', name: 'Quinto Mayor Open Cut', slug: 'hail-creek', prefix: 'HC',
       customer: 'Glencore', year: 2023,
       totalDefects: 598, closedDefects: 348, openDefects: 250, remediationRate: 58,
       totalTasks: 58, tasksNotStarted: 28, tasksInProgress: 18, tasksCompleted: 12,
@@ -179,7 +179,7 @@ const SITES_BY_YEAR = {
       assetCount: 8
     },
     'hail-creek': {
-      id: 'hail-creek', name: 'Hail Creek Open Cut', slug: 'hail-creek', prefix: 'HC',
+      id: 'hail-creek', name: 'Quinto Mayor Open Cut', slug: 'hail-creek', prefix: 'HC',
       customer: 'Glencore', year: 2024,
       totalDefects: 572, closedDefects: 384, openDefects: 188, remediationRate: 67,
       totalTasks: 50, tasksNotStarted: 22, tasksInProgress: 16, tasksCompleted: 12,
@@ -195,7 +195,7 @@ const SITES_BY_YEAR = {
       assetCount: 9
     },
     'hail-creek': {
-      id: 'hail-creek', name: 'Hail Creek Open Cut', slug: 'hail-creek', prefix: 'HC',
+      id: 'hail-creek', name: 'Quinto Mayor Open Cut', slug: 'hail-creek', prefix: 'HC',
       customer: 'Glencore', year: 2025,
       totalDefects: 552, closedDefects: 412, openDefects: 140, remediationRate: 75,
       totalTasks: 46, tasksNotStarted: 16, tasksInProgress: 14, tasksCompleted: 16,
@@ -211,7 +211,7 @@ const SITES_BY_YEAR = {
       assetCount: 9
     },
     'hail-creek': {
-      id: 'hail-creek', name: 'Hail Creek Open Cut', slug: 'hail-creek', prefix: 'HC',
+      id: 'hail-creek', name: 'Quinto Mayor Open Cut', slug: 'hail-creek', prefix: 'HC',
       customer: 'Glencore', year: 2026,
       totalDefects: 534, closedDefects: 434, openDefects: 100, remediationRate: 81,
       totalTasks: 42, tasksNotStarted: 10, tasksInProgress: 12, tasksCompleted: 20,

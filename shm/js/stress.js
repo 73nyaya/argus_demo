@@ -104,15 +104,10 @@ function displayStressFindings(data, stressType) {
     const minValue = Math.min(...values);
     const avgValue = values.reduce((a, b) => a + b, 0) / values.length;
     
+    // Compact summary format with title
     let html = '<div class="findings-note">';
     html += '<h3>Findings</h3>';
-    html += `<p><strong>${stressType}</strong> analysis shows:</p>`;
-    html += '<ul>';
-    html += `<li>Maximum stress: ${maxValue.toFixed(2)} MPa</li>`;
-    html += `<li>Minimum stress: ${minValue.toFixed(2)} MPa</li>`;
-    html += `<li>Average stress: ${avgValue.toFixed(2)} MPa</li>`;
-    html += '</ul>';
-    html += '<p>Use the 3D visualization to identify areas of high stress concentration.</p>';
+    html += `<p><strong>${stressType}:</strong> Max ${maxValue.toFixed(2)} MPa | Avg ${avgValue.toFixed(2)} MPa | Min ${minValue.toFixed(2)} MPa</p>`;
     html += '</div>';
     
     container.innerHTML = html;
