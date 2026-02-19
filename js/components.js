@@ -59,6 +59,7 @@ function renderSiteTabs(slug, activeTab) {
     { id: 'home', label: 'Home' },
     { id: 'assets', label: 'Assets' },
     { id: 'defects', label: 'Defects' },
+    { id: 'defect-analysis', label: 'Defect Analysis' },
     { id: 'tasks', label: 'Tasks' },
     { id: 'schedule', label: 'Schedule' },
     { id: 'documents', label: 'Documents' },

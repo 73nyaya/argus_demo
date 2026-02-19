@@ -990,3 +990,346 @@ button.defect-detail-thumb {
 .analytics-status-fill.risk-3 { background: var(--analytics-risk-3); }
 .analytics-status-fill.risk-4 { background: var(--analytics-risk-4); }
 .analytics-status-value { width: 48px; font-size: 12px; font-weight: 600; color: var(--grey-800); text-align: right; }
+
+/* ============================================
+   Defect Analysis Tab
+   ============================================ */
+.defect-analysis-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.defect-analysis-section {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--grey-200);
+  padding: 24px;
+}
+.defect-analysis-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--grey-900);
+  margin-bottom: 20px;
+}
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1200px) {
+  .form-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+.required {
+  color: var(--error);
+}
+.defect-analysis-upload-area {
+  border: 2px dashed var(--grey-300);
+  border-radius: var(--radius-md);
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--grey-50);
+}
+.defect-analysis-upload-area:hover,
+.defect-analysis-upload-area.dragover {
+  border-color: var(--primary-500);
+  background: var(--primary-50);
+}
+.defect-analysis-upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.defect-analysis-upload-content .material-icons-outlined {
+  font-size: 48px;
+  color: var(--grey-400);
+}
+.defect-analysis-upload-area:hover .defect-analysis-upload-content .material-icons-outlined,
+.defect-analysis-upload-area.dragover .defect-analysis-upload-content .material-icons-outlined {
+  color: var(--primary-600);
+}
+.defect-analysis-upload-content p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--grey-600);
+}
+.defect-analysis-upload-link {
+  color: var(--primary-600);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.defect-analysis-upload-hint {
+  font-size: 12px;
+  color: var(--grey-500);
+}
+.defect-analysis-images-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+.defect-analysis-image-item {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--grey-200);
+}
+.defect-analysis-image-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.defect-analysis-image-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.defect-analysis-image-remove:hover {
+  background: var(--error);
+}
+.defect-analysis-image-remove .material-icons-outlined {
+  font-size: 16px;
+}
+.defect-analysis-image-count {
+  font-size: 13px;
+  color: var(--grey-600);
+  margin-top: 12px;
+}
+.defect-analysis-loading-text {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--grey-600);
+}
+.defect-analysis-error {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--error-light);
+  color: var(--error);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Report Display */
+.defect-analysis-report {
+  background: white;
+  border: 1px solid var(--grey-200);
+}
+.defect-analysis-report-header {
+  background: var(--warning-light);
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+}
+.defect-analysis-report-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  font-size: 13px;
+  color: var(--grey-700);
+}
+.defect-analysis-report-header-row:not(:last-child) {
+  margin-bottom: 12px;
+}
+.defect-analysis-report-header-row strong {
+  color: var(--grey-900);
+  margin-right: 4px;
+}
+.defect-analysis-inline-input {
+  display: inline-block;
+  width: 120px;
+  padding: 4px 8px;
+  font-size: 13px;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-sm);
+  margin-left: 4px;
+}
+.defect-analysis-report-section {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--grey-200);
+}
+.defect-analysis-report-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.defect-analysis-report-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--grey-900);
+  margin-bottom: 12px;
+}
+.defect-analysis-report-action-type {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-600);
+  padding: 12px;
+  background: var(--primary-50);
+  border-radius: var(--radius-md);
+}
+.defect-analysis-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--grey-900);
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-md);
+  resize: vertical;
+}
+.defect-analysis-textarea-small {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--grey-900);
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-md);
+  resize: vertical;
+}
+.defect-analysis-risk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .defect-analysis-risk-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.defect-analysis-risk-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.defect-analysis-risk-cell label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--grey-700);
+}
+.defect-analysis-select {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-md);
+}
+.defect-analysis-action-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  font-size: 14px;
+  color: var(--grey-700);
+}
+.defect-analysis-action-details > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.defect-analysis-action-details label {
+  font-weight: 600;
+  min-width: 120px;
+}
+.defect-analysis-number-input {
+  width: 120px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-md);
+}
+.defect-analysis-currency {
+  font-size: 13px;
+  color: var(--grey-600);
+}
+.defect-analysis-methodology-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.defect-analysis-methodology-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.defect-analysis-methodology-number {
+  font-weight: 600;
+  color: var(--grey-600);
+  min-width: 24px;
+  padding-top: 8px;
+}
+.defect-analysis-methodology-step textarea {
+  flex: 1;
+}
+.defect-analysis-methodology-remove {
+  padding: 8px;
+  background: var(--error-light);
+  color: var(--error);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+.defect-analysis-methodology-remove:hover {
+  background: var(--error);
+  color: white;
+}
+.defect-analysis-report-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.defect-analysis-report-photo {
+  max-width: 200px;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--grey-200);
+}
+.defect-analysis-ai-notes {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--grey-500);
+  padding: 12px;
+  background: var(--grey-50);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--primary-500);
+}
+.defect-analysis-report-actions {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--grey-200);
+  display: flex;
+  justify-content: flex-end;
+}

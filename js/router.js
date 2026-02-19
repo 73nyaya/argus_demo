@@ -58,7 +58,7 @@ function handleRoute() {
     return;
   }
 
-  var siteMatch = hash.match(/^site\/([\w-]+)\/(\w+)(?:\/([\w.]+))?$/);
+  var siteMatch = hash.match(/^site\/([\w-]+)\/([\w-]+)(?:\/([\w.]+))?$/);
   if (siteMatch) {
     var slug = siteMatch[1];
     var page = siteMatch[2];
@@ -92,6 +92,13 @@ function handleRoute() {
         return;
       case 'defects':
         renderDefects(main, slug);
+        return;
+      case 'defect-analysis':
+        if (typeof renderDefectAnalysis === 'function') {
+          renderDefectAnalysis(main, slug);
+        } else {
+          main.innerHTML = '<div class="page-title">Defect Analysis</div><p>Could not load. Ensure <code>js/views/defectAnalysis.js</code> loads (check Network tab for 404).</p>';
+        }
         return;
       case 'tasks':
         renderTasks(main, slug);
